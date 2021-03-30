@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../OneHorizon/css/business_style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>OneHorizon</title>
+</head>
+
+<body>
+    <header>
+        <div class="website-header">
+            <h1><a href="index.html">OneHorizon</a></h1>
+            <div class="social-icons">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-google-plus-g"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fas fa-rss"></i>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-md ">
+
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">STORIES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">POLITICS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="business.html">BUSINESS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="travel.html">TRAVEL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TECHNOLOGY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sports.html">SPORTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">AUTOMOBILES</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                    {
+                        "symbols": [
+                            {
+                                "proName": "FOREXCOM:SPXUSD",
+                                "title": "S&P 500"
+                            },
+                            {
+                                "proName": "FOREXCOM:NSXUSD",
+                                "title": "Nasdaq 100"
+                            },
+                            {
+                                "proName": "FX_IDC:EURUSD",
+                                "title": "EUR/USD"
+                            },
+                            {
+                                "proName": "BITSTAMP:BTCUSD",
+                                "title": "BTC/USD"
+                            },
+                            {
+                                "proName": "BITSTAMP:ETHUSD",
+                                "title": "ETH/USD"
+                            },
+                            {
+                                "description": "SENSEX",
+                                "proName": "BSE:SENSEX"
+                            }
+                        ],
+                            "showSymbolLogo": true,
+                                "colorTheme": "dark",
+                                    "isTransparent": false,
+                                        "displayMode": "adaptive",
+                                            "locale": "in"
+                    }
+                </script>
+        </div>
+    </header>
+    <main>
+
+        <div class="tradingview-widget-container">
+            <div id="tradingview_33be2"></div>
+
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+            <script type="text/javascript">
+                new TradingView.widget(
+                    {
+                        "width": 1519,
+                        "height": 610,
+                        "symbol": "SENSEX",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "dark",
+                        "style": "1",
+                        "locale": "in",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview_33be2"
+                    }
+                );
+            </script>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h2>Breaking News</h2>
+        <br>
+
+        <div class="card-deck">
+            <div class="card">
+                <img class="card-img-top" src="../OneHorizon/assets/1.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Elon Musk's SpaceX raised $850 million, jumping valuation to about $74
+                        billion</h5>
+                    <p class="card-text">SpaceX completed another monster equity funding round of $850 million last
+                        week, people familiar with the financing told CNBC, sending the company’s valuation skyrocketing
+                        to about $74 billion.</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 1 min ago</small>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="../OneHorizon/assets/news.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Tatas to buy 68% in BigBasket for Rs 9,500 cr, deal likely in 4-5 weeks </h5>
+                    <p class="card-text">The Tata Group is in the final stages of acquiring a majority stake of 68 per
+                        cent in Supermarket Grocery Supplies, which runs and operates online grocery brand BigBasket,
+                        for about Rs 9,300-9,500 crore.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 1 min ago</small>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="../OneHorizon/assets/calc.webp" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">NPA Watch: Banks wrote off loans worth over Rs 25,500 crore in Q3</h5>
+                    <p class="card-text">A clutch of banks have together written off loans worth Rs 25,539 crore in the
+                        December quarter, even as an interim judicial stay on the recognition of bad loans after August
+                        31 kept slippages in check.</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 1 min ago</small>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="../OneHorizon/assets/index.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">China targets rare earth export curbs to hobble US defence industry</h5>
+                    <p class="card-text">
+                        China is exploring limiting the export of rare earth minerals that are crucial for the
+                        manufacture of American F-35 fighter jets and other sophisticated weaponry, according to people
+                        involved in a government consultation.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 1 min ago</small>
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+    <footer>
+        <div class="social-links">
+            <section class="about">
+                <h2>About</h2>
+                <p>The Horizon - Latest news, tech updates and much more. Follow us on these social links</p>
+                <div class="social-icons-footer">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter-square"></i>
+                    <i class="fab fa-google-plus-square"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fas fa-rss-square"></i>
+                    <i class="fab fa-youtube-square"></i>
+                    <i class="fas fa-rss-square"></i>
+                    <i class="fab fa-pinterest-square"></i>
+                    <i class="fab fa-linkedin"></i>
+                </div>
+            </section>
+            <section class="Instagram">
+                <h2>Follow on Instagram</h2>
+                <button type="button" class="footer-buttons">View on Instagram</button>
+            </section>
+            <section class="Subscribe">
+                <h2>Subscribe to News Today</h2>
+                <p>Enter your email address to subscribe to us and receive notifications on email</p>
+                <input type="email" placeholder="Email Address">
+                <button type="button" class="footer-buttons">Subscribe</button>
+            </section>
+        </div>
+
+        <div class="copyright">Copyright © 2021 The Horizon. All Rights Reserved.</div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
