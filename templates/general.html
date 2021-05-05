@@ -52,9 +52,15 @@
         <li class="nav-item">
           <a class="nav-link" href="/sports">SPORTS</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" target = "_blank" href="/index3">ANALYSIS</a>
-      </li>
+        {% if user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" target = "_blank" href="/index3">ANALYSIS</a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+    <a class="nav-link" target = "_blank" href="#">|| PAID ||</a>
+  </li>
+    {% endif %}
       </ul>
     </div>
   </nav>

@@ -128,6 +128,7 @@ def technology(request):
 
 def general(request):
     name=request.user.get_username()
+    print(name,"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     obj=general_news.objects.filter(Date_Published=str(date_today))
     if list(obj)==[] :
         top = newsapi.get_top_headlines(category='general',country='in')
