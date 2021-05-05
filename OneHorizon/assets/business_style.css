@@ -4,7 +4,7 @@ body{
 }
 header{	
 	background-color: black;
-	color: rgb(214, 160, 160);
+	color: white !important;
 }
 .body main{
 	background-color: rgba(4, 7, 17, 0.904) !important;
@@ -22,9 +22,7 @@ header{
 	margin: 0 30px;
 }
 .website-header h1{
-	position: relative;
-	margin-bottom: 2%;
-    left:40%;
+	margin: auto 0
 	
 }
 .website-header  a:link{
@@ -50,7 +48,7 @@ nav ul{
 .navbar-nav li{
 	list-style: none;
 	display: inline-block;
-	padding: 0px 45px;
+	padding: 10px 37px;
 }
 .navbar-nav li a{
 	color: #fff;
