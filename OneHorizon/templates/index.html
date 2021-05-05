@@ -12,6 +12,9 @@
 <body>
     <header>
         <div class="website-header">
+            <img src="{% static 'logo1.png' %}">
+            <h1>One Horizon</h1>
+            <div class="social-icons">
                 {% if user.is_authenticated %}
                 <i>{{name}} is logged in.</i>
                 <i><a href="logout">Log Out</a></i>
