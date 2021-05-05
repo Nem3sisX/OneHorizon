@@ -11,16 +11,21 @@
 	</head>
 		<header>
 			<div class="website-header">
-				<h1><center>One Horizon</h1></center>
-				<div class="social-icons">
-					<i class="fab fa-facebook-f"></i>
-					<i class="fab fa-twitter"></i>
-					<i class="fab fa-google-plus-g"></i>
-					<i class="fab fa-instagram"></i>
-					<i class="fas fa-rss"></i>
-				</div>
-			</div>
-			<nav class="navbar navbar-expand-md ">
+        <h1>
+          <center>One Horizon
+        </h1>
+        </center>
+        <div class="social-icons">
+          {% if user.is_authenticated %}
+          <i>{{name}} is logged in.</i>
+          <i><a href="logout">Log Out</a></i>
+          {% else %}
+          <i><a href="login">Login</a></i>
+          <i><a href="register">Sign Up</a></i>
+          {% endif %}
+        </div>
+      </div>
+      <nav class="navbar navbar-expand-md ">
 
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -44,6 +49,9 @@
     <li class="nav-item">
         <a class="nav-link" href="/sports">SPORTS</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" target = "_blank" href="/index3">ANALYSIS</a>
+  </li>
     </ul>
   </div> 
 			</nav>

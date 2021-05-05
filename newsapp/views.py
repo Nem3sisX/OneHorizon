@@ -2,11 +2,17 @@ from django.shortcuts import render, redirect
 from newsapi import NewsApiClient
 from .models import *
 from datetime import date
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.corpus import stopwords
+from nltk.cluster.util import cosine_distance
+import numpy as np
+import networkx as nx
 today = date.today()
 date_today = today.strftime("%Y-%m-%d")
 newsapi = NewsApiClient(api_key ='d6b5ab7f2c144ca1926003fcd0ef88ef')
 # Create your views here. 
 def entertainment(request):
+    name=request.user.get_username()
     obj=entertain_news.objects.filter(Date_Published=str(date_today))
     if list(obj)==[] :
         top = newsapi.get_top_headlines(category='entertainment',country='in')
@@ -24,7 +30,7 @@ def entertainment(request):
             date.append(f['publishedAt'][0:10])
         mylist = zip(news[:10], desc[:10], img[:10],url[:10])
         mylist2 = zip(news[10:], desc[10:], img[10:],url[10:],date[10:])
-        return render(request, 'entertain.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'entertain.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
     else:
         obj=entertain_news.objects.filter(Date_Published=str(date_today)).values()
         desc,news,url,img,date =[],[],[],[],[]
@@ -36,8 +42,9 @@ def entertainment(request):
             date.append(i['Date_Published'])
         mylist = zip(news[:10], desc[:10], img[:10],url[:10])
         mylist2 = zip(news[10:], desc[10:], img[10:],url[10:],date[10:])
-        return render(request, 'entertain.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'entertain.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
 def business(request):
+    name=request.user.get_username()
     obj=business_news.objects.filter(Date_Published=str(date_today))
     if list(obj)==[] :
         top = newsapi.get_top_headlines(category='business',country='in')
@@ -55,7 +62,7 @@ def business(request):
             date.append(f['publishedAt'][0:10])
         mylist = zip(news[:10], desc[:10], img[:10],url[:10])
         mylist2 = zip(news[10:], desc[10:], img[10:],url[10:],date[10:])
-        return render(request, 'business.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'business.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
     else:
         obj=business_news.objects.filter(Date_Published=str(date_today)).values()
         desc,news,url,img,date =[],[],[],[],[]
@@ -71,9 +78,10 @@ def business(request):
             id1.append(a)
         mylist = zip(news[:10], desc[:10], img[:10],url[:10],id1)
         mylist2 = zip(news[10:], desc[10:], img[10:],url[10:],date[10:])
-        return render(request, 'business.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'business.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
 
 def technology(request):
+    name=request.user.get_username()
     obj=technology_news.objects.filter(Date_Published=str(date_today))
     x=5
     if list(obj)==[] :
@@ -98,7 +106,7 @@ def technology(request):
         slide=["slide1","slide2","slide3","slide4","slide5"]
         slide1=["s1","s2","s3","s4","s5"]
         mylist2 = zip(news[:x], desc[:x], img[:x],url[:x],slide,slide1)
-        return render(request, 'technology.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'technology.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
     else:
         obj=technology_news.objects.filter(Date_Published=str(date_today)).values()
         desc,news,url,img,date =[],[],[],[],[]
@@ -116,7 +124,7 @@ def technology(request):
         slide=["slide1","slide2","slide3","slide4","slide5"]
         slide1=["s1","s2","s3","s4","s5"]
         mylist2 = zip(news[:x], desc[:x], img[:x],url[:x],slide,slide1)
-        return render(request, 'technology.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'technology.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
 
 def general(request):
     name=request.user.get_username()
@@ -152,6 +160,7 @@ def general(request):
         return render(request, 'general.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
 
 def sports(request):
+    name=request.user.get_username()
     obj=sports_news.objects.filter(Date_Published=str(date_today))
     x=5
     if list(obj)==[] :
@@ -176,7 +185,7 @@ def sports(request):
         slide=["slide1","slide2","slide3","slide4","slide5"]
         slide1=["s1","s2","s3","s4","s5"]
         mylist2 = zip(news[:x], desc[:x], img[:x],url[:x],slide,slide1)
-        return render(request, 'sports.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'sports.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
     else:
         obj=sports_news.objects.filter(Date_Published=str(date_today)).values()
         desc,news,url,img,date =[],[],[],[],[]
@@ -194,7 +203,7 @@ def sports(request):
         slide=["slide1","slide2","slide3","slide4","slide5"]
         slide1=["s1","s2","s3","s4","s5"]
         mylist2 = zip(news[:x], desc[:x], img[:x],url[:x],slide,slide1)
-        return render(request, 'sports.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'sports.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
 
 def date_fetch(request):
     if request.method == 'POST':
@@ -238,12 +247,6 @@ def date_fetch(request):
             mylist2 = zip(news[x:], desc[x:], img[x:],url[x:],date[x:])
         return render(request, pg, context ={"mylist":mylist,"mylist2":mylist2})
 
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from nltk.corpus import stopwords
-from nltk.cluster.util import cosine_distance
-import numpy as np
-import networkx as nx
-
 
 def read_article(file_name):
     article = file_name.split(".")
@@ -252,6 +255,7 @@ def read_article(file_name):
     for sentence in article:
         sen = sentence.strip()
         sentences.append(sen.replace("[^a-zA-Z]", " ").split(" "))
+        print(sentences[len(sentences) - 1])
     sentences.pop()
 
     return sentences
@@ -269,11 +273,13 @@ def sentence_similarity(sent1, sent2, stopwords=None):
     vector1 = [0] * len(all_words)
     vector2 = [0] * len(all_words)
 
+    # build the vector for the first sentence
     for w in sent1:
         if w in stopwords:
             continue
         vector1[all_words.index(w)] += 1
 
+    # build the vector for the second sentence
     for w in sent2:
         if w in stopwords:
             continue
@@ -283,11 +289,12 @@ def sentence_similarity(sent1, sent2, stopwords=None):
 
 
 def build_similarity_matrix(sentences, stop_words):
+    # Create an empty similarity matrix
     similarity_matrix = np.zeros((len(sentences), len(sentences)))
 
     for idx1 in range(len(sentences)):
         for idx2 in range(len(sentences)):
-            if idx1 == idx2:
+            if idx1 == idx2:  # ignore if both are same sentences
                 continue
             similarity_matrix[idx1][idx2] = sentence_similarity(
                 sentences[idx1], sentences[idx2], stop_words
@@ -300,14 +307,17 @@ def generate_summary(file_name, top_n=5):
     stop_words = stopwords.words("english")
     summarize_text = []
 
+    # Step 1 - Read text anc split it
     sentences = read_article(file_name)
 
+    # Step 2 - Generate Similary Martix across sentences
     sentence_similarity_martix = build_similarity_matrix(sentences, stop_words)
-    print(sentence_similarity_martix)
+
+    # Step 3 - Rank sentences in similarity martix
     sentence_similarity_graph = nx.from_numpy_array(sentence_similarity_martix)
     scores = nx.pagerank_numpy(sentence_similarity_graph)
-    for i in sentence_similarity_graph.edges(data=True):
-        print(i)
+
+    # Step 4 - Sort the rank and pick top sentences
     ranked_sentence = sorted(
         ((scores[i], s) for i, s in enumerate(sentences)), reverse=True
     )
@@ -315,10 +325,9 @@ def generate_summary(file_name, top_n=5):
     for i in range(top_n):
         summarize_text.append(" ".join(ranked_sentence[i][1]))
 
-    return ". ".join(summarize_text), ranked_sentence
-
-
-def summary(request):
+    # Step 5 - Offcourse, output the summarize texr
+    return ". ".join(summarize_text),ranked_sentence
+def index2(request):
     button = request.POST["b1"]
     sentence = request.POST["comment"]
     sia = SentimentIntensityAnalyzer()
@@ -335,7 +344,7 @@ def summary(request):
 
     else:
         result = "The news article is neutral"
-    answer, ranked = generate_summary(sentence, 3)
+    answer, ranked = generate_summary(sentence)
     score = []
     sent = []
     for i in ranked:
@@ -369,3 +378,6 @@ def register(response):
     else:
         form = RegisterForm()
     return render(response, "register.html", {"form": form})
+
+def index(request):
+    return render(request,'index3.html')

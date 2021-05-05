@@ -27,6 +27,8 @@ urlpatterns = [
     path("entertain", views.entertainment, name="entertainment"),
     path("sports", views.sports, name="general"),
     path("date", views.date_fetch, name="date_fetch"),
+    path('summary', views.index2, name ='index2'),
+    path('index3', views.index, name ='index3'),
     path("admin/", admin.site.urls),
     path("", include("django.contrib.auth.urls")),
     path("register", views.register),
