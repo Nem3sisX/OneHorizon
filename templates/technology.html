@@ -1,0 +1,240 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>NEWS</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'nw_style1.css' %}"/>
+
+    <script>
+      function swap()
+      {
+              var a=[document.getElementById("s1"),document.getElementById("s2"),document.getElementById("s3"),document.getElementById("s4"),document.getElementById("s5")];
+              window.n=0;
+              if (a[0].checked==true)
+              {
+                  a[1].checked=true;
+                  n=1;
+              }
+              else if (a[1].checked==true)
+              {
+                  a[2].checked=true;
+                  n=2;
+              }
+              else if (a[2].checked==true)
+              {
+                  a[3].checked=true;
+                  n=3;
+              }             
+              else if (a[3].checked==true)
+              {
+                  a[4].checked=true;
+                  n=4;
+              }
+              else if (a[4].checked==true)
+              {
+                  a[0].checked=true;
+                  n=0;
+              }
+              setTimeout(swap, 3100);   
+      }
+
+  </script>
+
+  </head>
+  <body>
+    <header>
+      <div class="website-header">
+				<h1>One Horizon</h1>
+				<div class="social-icons">
+					<i class="fab fa-facebook-f"></i>
+					<i class="fab fa-twitter"></i>
+					<i class="fab fa-google-plus-g"></i>
+					<i class="fab fa-instagram"></i>
+					<i class="fas fa-rss"></i>
+				</div>
+			</div>
+			<nav class="navbar navbar-expand-md ">
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">GENERAL</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/entertain">ENTERTAINMENT</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/business">BUSINESS</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/technology">TECHNOLOGY</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/sports">SPORTS</a>
+    </li>
+    </ul>
+  </div> 
+	</nav>
+  </header>
+    <div class="sec1">
+      <div class="mst">
+        <input type="radio" name="slider" id="s1" >
+        <input type="radio" name="slider" id="s2" checked>
+        <input type="radio" name="slider" id="s3">
+        <input type="radio" name="slider" id="s4">
+        <input type="radio" name="slider" id="s5">
+        {% for new, des, i, lnk,id,f in mylist2 %}
+          <section class="card border-danger border-2" style="width: 27rem; height: 28rem;" id="{{id}}" for="{{f}}">
+              <img src="{{i}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h4 class="card-title">{{new}}</h4>
+                <p class="card-text"></p>
+                <!--<button type="button" class="btn btn-outline-danger" border-2 rounded-pill data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                  Read full
+                </button>-->
+                <a href="{{lnk}}" class="button" target="_blank">Read More</a>
+              </div>
+          </section>
+        {%endfor%}
+        <!-- <section class="card border-danger border-2" style="width: 27rem; height: 30rem;" id="slide2" for="s2">
+            <img src="{% static 'twit.jpeg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title">Twitter piolt to let users flag "false" content</h4>
+              <p class="card-text">Twitter has announced a pilot that allows people to submit notes on tweets that may be false or misleadin.</p>
+              <button type="button" class="btn btn-outline-danger" border-2 rounded-pill data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                Read full
+              </button>
+            </div>
+          </section>
+          <section class="card border-danger border-2" style="width: 27rem; height: 30rem;" id="slide3" for="s3">
+            <img src="{% static 'amz.jpeg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title">Amazon to start making Fire TV Stick devices in India</h4>
+              <p class="card-text">Amazon India has announced its first-ever ‘Make in India’ initiative and has announced its plans to start making amazon devices in India </p>
+              <button type="button" class="btn btn-outline-danger" border-2 rounded-pill data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                Read full
+              </button>
+            </div>
+          </section>
+          <section class="card border-danger border-2" style="width: 27rem; height: 30rem;" id="slide4" for="s4">
+              <img src="{% static 'ylwbrd.jpeg' %}" class="card-img-top" alt="Image not availabe">
+            <div class="card-body">
+              <h4 class="card-title">Koo v Twitter</h4>
+              <p class="card-text">A little yellow chick is gaining prominence in India as a result of tensions between Twitter and the Indian government.</p>
+              <button type="button" class="btn btn-outline-danger" border-2 rounded-pill data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                Read full
+              </button>
+            </div>
+          </section>
+          <section class="card border-danger border-2" style="width: 27rem; height: 30rem;" id="slide5" for="s5">
+            <img src="{% static 'tiktok2.jpeg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title">Full-face hot-wax TikTok videos prompt warnings</h4>
+              <p class="card-text">Viral videos of people having full-face "hot wax" treatments on TikTok have led to warnings from skin experts.</p>
+              <button type="button" class="btn btn-outline-danger" border-2 rounded-pill data-bs-toggle="modal" data-bs-target="#exampleModal5">
+                Read full
+              </button>
+            </div>
+          </section>-->
+          <script>swap();</script>
+      </div>
+    </div>
+    <div class="sec2">
+      <h3>TECH STORIES</h3>
+      <form action="date" class="frm" method="POST">
+        {% csrf_token %}
+        <input type="date" id="date" name="date">&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="button" value="Technology" name="action">GO</button>
+      </form>
+      <div class="insec2">
+        {% for new, des, i, lnk , mod in mylist %}
+          <div class="card border-danger border-4 rounded-3" style="width: 23rem; height: 31rem;">
+            <img src="{{ i }}" class="card-img-top" alt="Image not availabe">
+            <div class="card-body">
+              <h5 class="card-title">{{ new }}</h5>
+              <p class="card-text"></p>
+              <br><br>
+              <a href="{{lnk}}" class="button" target="_blank">Read More</a>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+      <!-- Button trigger modal -->
+      
+      <!-- Modal 
+      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">TikTok breaching users' rights - European Consumer Organisation</h4>
+            </div>
+            <div class="modal-body">
+              <img src="img/tiktok.jpeg" style="width: 100%;" alt="...">
+              <br>
+              <b>TikTok has been accused of breaching users' rights "on a massive scale" by a European consumer group.</b><br>The European Consumer Organisation (BEUC) says the platform "falls foul of multiple breaches of EU consumer rights". It also claims TikTok has failed to protect children from hidden advertising and inappropriate content. TikTok told the BBC that it has requested a meeting with the BEUC to discuss its concerns. The body has filed a complaint with the EU’s network of consumer protection authorities.Full-face hot-wax TikTok videos prompt warnings Love Island star's TikTok 'breached ad rules Owned by China's Bytedance, TikTok has faced increasing criticism regarding its privacy and safety policies following a number of incidents. The BEUC cited several issues in its complaint to the EU, among them declaring the platform's terms of service "unfair"."They are unclear, ambiguous and favour TikTok to the detriment of its users," said the organisation. "Its copyright terms are equally unfair as they give TikTok an irrevocable right to use, distribute and reproduce the videos published by users, without remuneration."
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Twitter piolt to let users flag "false" content</h4>
+            </div>
+            <div class="modal-body">
+              <img src="img/twit.jpeg" style="width: 100%;" alt="...">
+              <br>
+              <b>Twitter is asking its users for help in combating fake news.</b><br>It has announced a pilot that allows people to submit notes on tweets that may be false or misleading.The initiative, named 'Birdwatch', is being trialled among a small group in the US initially. The firm acknowledged the new system would have to be "resistant to manipulation attempts".Companies like Twitter are looking at how they can better moderate their platforms.Twitter said on Monday: "We know this might be messy and have problems at times, but we believe this is a model worth trying."Twitter, along with other large social media companies, has struggled to deal with disinformation on its platform.<br>The pilot will allow users to flag tweets they believe to be "misleading or false", provide evidence to the contrary and discuss them with other - on a separate 'Birdwatch' siteAdditional notes and flags would then be placed on to content. Twitter says this new approach could help it respond more quickly when misleading information spreads."Eventually we aim to make notes visible directly on Tweets for the global Twitter audience, when there is consensus from a broad and diverse set of contributors," Twitter said. It has announced a pilot that allows people to submit notes on tweets that may be false or misleading.The initiative, named 'Birdwatch', is being trialled among a small group in the US initially. The firm acknowledged the new system would have to be "resistant to manipulation attempts". Companies like Twitter are looking at how they can better moderate their platforms. Twitter said on Monday: "We know this might be messy and have problems at times, but we believe this is a model worth trying." Twitter, along with other large social media companies, has struggled to deal with disinformation on its platform.
+              The pilot will allow users to flag tweets they believe to be "misleading or false", provide evidence to the contrary and discuss them with other - on a separate 'Birdwatch' site.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">What happened to Anthem? The blockbuster game that failed to find a communit</h4>
+            </div>
+            <div class="modal-body">
+              <img src="img/gam.jpg" style="width: 100%;" alt="...">
+              <br>
+              <b>On paper, Anthem is a game with everything.</b><br>It's developed by one of the gaming industry's most revered studios, BioWare, and published by one of its biggest companies, Electronic Arts. A co-operative sci-fi shooter, early footage showed off fluid gameplay and a world that is bold and bright, stuffed with exciting environments and plenty of enemy encounters. However - less than two years after its troubled debut - there are reports that the game's lacklustre reception and dwindling player count mean its days are numbered.<br>So how did a studio as beloved as BioWare, the same team behind fan-favourite franchises like Mass Effect and Dragon Age, go so wrong? "It's sad," says Inel Tomlinson, Twitch streamer and reviewer on BBC Sound's Press X to Continue podcast."You can tell developers put a lot of hard work into it - whether or not the direction was correct or not, you can tell there was a lot of hard work. "Because the world is lush - and the graphics beautiful - it just wasn't cohesive enough for people to really enjoy it."  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+       
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+  </body>
+</html>
+
