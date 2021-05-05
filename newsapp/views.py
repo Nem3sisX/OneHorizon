@@ -119,6 +119,7 @@ def technology(request):
         return render(request, 'technology.html', context ={"mylist":mylist,"mylist2":mylist2})
 
 def general(request):
+    name=request.user.get_username()
     obj=general_news.objects.filter(Date_Published=str(date_today))
     if list(obj)==[] :
         top = newsapi.get_top_headlines(category='general',country='in')
@@ -136,7 +137,7 @@ def general(request):
             date.append(f['publishedAt'][0:10])
         mylist = zip(news[:10], desc[:10], img[:10],url[:10])
         mylist2 = zip(news[10:], desc[10:], img[10:],url[10:],date[10:])
-        return render(request, 'general.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'general.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
     else:
         obj=general_news.objects.filter(Date_Published=str(date_today)).values()
         desc,news,url,img,date =[],[],[],[],[]
@@ -148,7 +149,7 @@ def general(request):
             date.append(i['Date_Published'])
         mylist = zip(news[:10], desc[:10], img[:10],url[:10])
         mylist2 = zip(news[10:], desc[10:], img[10:],url[10:],date[10:])
-        return render(request, 'general.html', context ={"mylist":mylist,"mylist2":mylist2})
+        return render(request, 'general.html', context ={"mylist":mylist,"mylist2":mylist2,"name":name})
 
 def sports(request):
     obj=sports_news.objects.filter(Date_Published=str(date_today))
@@ -364,7 +365,7 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             form.save()
-        return redirect(index)
+        return redirect(general)
     else:
         form = RegisterForm()
     return render(response, "register.html", {"form": form})

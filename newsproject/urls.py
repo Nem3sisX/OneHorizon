@@ -29,7 +29,8 @@ urlpatterns = [
     path("date", views.date_fetch, name="date_fetch"),
     path("admin/", admin.site.urls),
     path("", include("django.contrib.auth.urls")),
-    path("register", views.register)
+    path("register", views.register),
+    path("index", views.general),
 ]
 
 if settings.DEBUG:
