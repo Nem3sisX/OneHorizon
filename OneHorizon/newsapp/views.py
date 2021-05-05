@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
@@ -96,40 +96,56 @@ def travel(request):
 def natural(request):
     return render(request, "natural.html")
 
+
 def summary(request):
-        button = request.POST["b1"]
-        sentence = request.POST["comment"]
-        sia = SentimentIntensityAnalyzer()
-        sentiment = sia.polarity_scores(sentence)
-        negative = sentiment["neg"]
-        neutral = sentiment["neu"]
-        positive = sentiment["pos"]
-        compound = sentiment["compound"]
-        if compound >= 0.05:
-            result = "The news article is positive"
+    button = request.POST["b1"]
+    sentence = request.POST["comment"]
+    sia = SentimentIntensityAnalyzer()
+    sentiment = sia.polarity_scores(sentence)
+    negative = sentiment["neg"]
+    neutral = sentiment["neu"]
+    positive = sentiment["pos"]
+    compound = sentiment["compound"]
+    if compound >= 0.05:
+        result = "The news article is positive"
 
-        elif compound <= -0.05:
-            result = "The news article is negative"
+    elif compound <= -0.05:
+        result = "The news article is negative"
 
-        else:
-            result = "The news article is neutral"
-        answer, ranked = generate_summary(sentence,3)
-        score = []
-        sent = []
-        for i in ranked:
-            score.append(i[0])
-            sent.append(" ".join(i[1]))
-        rk = zip(score, sent)
-        return render(
-            request,
-            "result.html",
-            {
-                "positive": positive,
-                "neutral": neutral,
-                "negative": negative,
-                "compound": compound,
-                "result": result,
-                "summary": answer,
-                "rank": rk,
-            },
-        )
+    else:
+        result = "The news article is neutral"
+    answer, ranked = generate_summary(sentence, 3)
+    score = []
+    sent = []
+    for i in ranked:
+        score.append(i[0])
+        sent.append(" ".join(i[1]))
+    rk = zip(score, sent)
+    return render(
+        request,
+        "result.html",
+        {
+            "positive": positive,
+            "neutral": neutral,
+            "negative": negative,
+            "compound": compound,
+            "result": result,
+            "summary": answer,
+            "rank": rk,
+        },
+    )
+
+
+from .forms import RegisterForm
+
+
+def register(response):
+    if response.method == "POST":
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+        return redirect("index.html")
+    else:
+        form = RegisterForm()
+    return render(response, "register.html", {"form": form})
+

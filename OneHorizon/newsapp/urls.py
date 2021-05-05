@@ -7,4 +7,6 @@ urlpatterns = [
     path("travel", views.travel),
     path("natural", views.natural),
     path("summary", views.summary),
+    path("register", views.register),
+    path("index", views.index),
 ]
