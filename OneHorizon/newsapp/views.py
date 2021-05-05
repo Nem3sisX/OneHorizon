@@ -82,7 +82,8 @@ def generate_summary(file_name, top_n=5):
 
 
 def index(request):
-    return render(request, "index.html")
+    name = request.user.get_username()
+    return render(request, "index.html", {"name": name})
 
 
 def business(request):
